@@ -1,14 +1,14 @@
 Forking from https://github.com/imcwx/docker-spark-centos, modify to export jupyter port and use spark inside jupyter
 
 Add these to invoke spark:
-'''python
+```python
 import findspark
 findspark.init()
 from pyspark import SparkContext, SparkConf
 from pyspark.sql import SparkSession
 sc = SparkContext.getOrCreate(SparkConf().setMaster("local[*]"))
 spark = SparkSession.builder.getOrCreate()
-'''
+```
 
 ## #####################################################################
 
