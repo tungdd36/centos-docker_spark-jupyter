@@ -1,5 +1,7 @@
 Forking from https://github.com/imcwx/docker-spark-centos, modify to export jupyter port and use spark inside jupyter
 
+Modify *NOTEBOOK_DIR* in run.sh to specify folder containing notebooks.
+
 Add these to invoke spark:
 ```python
 import findspark
