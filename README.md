@@ -1,6 +1,17 @@
 Forking from https://github.com/imcwx/docker-spark-centos, modify to export jupyter port and use spark inside jupyter
 
-#######################################################################
+Add these to invoke spark:
+'''python
+import findspark
+findspark.init()
+from pyspark import SparkContext, SparkConf
+from pyspark.sql import SparkSession
+sc = SparkContext.getOrCreate(SparkConf().setMaster("local[*]"))
+spark = SparkSession.builder.getOrCreate()
+'''
+
+## #####################################################################
+
 I have fork this from big-data-europe.
 Testing if it works on CentOS. 
 and latest test some python libraries.
