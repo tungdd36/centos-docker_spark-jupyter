@@ -1,0 +1,31 @@
+version: '3'
+services:
+  spark-master:
+    image: bde2020-centos/spark-master:2.4.4-hadoop2.7
+#    container_name: spark-master
+    ports:
+      - "8080:8080"
+      - "7077:7077"
+    environment:
+      - INIT_DAEMON_STEP=setup_spark
+#    volumes:
+#      - /Users/wen.xiang.chew/Documents/project/IMDA_LionGate/data_science/enrichment_codes/prod:/prod
+    networks:
+      - no-internet
+  spark-worker:
+    deploy:
+      replicas: 2   # works with swarm mode
+    image: bde2020-centos/spark-worker:2.4.4-hadoop2.7
+#    container_name: spark-worker
+    depends_on:
+      - spark-master
+#    ports:
+#      - "8081:8081"
+    environment:
+      - "SPARK_MASTER=spark://spark-master:7077"
+    networks:
+      - no-internet
+networks:
+  no-internet:
+    driver: bridge
+#    internal: true
